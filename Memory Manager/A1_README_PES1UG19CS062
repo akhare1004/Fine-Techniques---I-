@@ -1,0 +1,18 @@
+ALLOCATION POLICY:
+	Best-fit allocation policy used. It allocates memory in that block of free space that 		is the closest in size to the number of bytes to be allocated.
+	
+IMPLEMENTATION LOGIC:
+	In the mymalloc function, I traversed through the global array and found the block of free memory that was closest to the size to be allocated, if any, and then marked the corresponding book_keeper as "allocated" and set the size of allocated memory. I then created another bookkeeper (if sufficient memory was present), and made the previous one point to this.
+	In the myfree function, I checked if the memory block before the one to be deleted is free or not. If free, I merged the two. I also checked if the memory after is free or not and similarly merged if it was free. If neither were free, I simply marked the current bookkeeper as "free".
+	
+BOOK-KEEPING STRUCTURE:
+	I used a structure a linked list of book-keeper structures to implement this program.
+	Each book-keeper has 4 fields:
+	1) A character to store whether the memory associated with this bookkeeper is allocated or free ('0' if free, '1' if alloacated)
+	2)An integer that stores the number of bytes associated with the bookkeeper.
+	3)A pointer to a character that points to first byte after the book-keeping structure in the global array
+	4)A pointer to a book_keeper that points to the next book-keeping structure in the global array.
+	
+	All the book_keepers are stored in the global array itself.
+	
+
